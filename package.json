@@ -4,7 +4,13 @@
   "description": "Test app from pluralsight",
   "main": "Server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "babel-node buildScripts/startMessage.js",
+    "start": "npm-run-all --parallel security-check open:src",
+    "open:src": "babel-node buildScripts/srcServer.js",
+    "security-check": "nsp check",
+    "localtunnel": "lt --port 3000",
+    "share": "npm-run-all --parallel open:src localtunnel"
   },
   "repository": {
     "type": "git",
@@ -16,9 +22,7 @@
     "url": "https://github.com/Szoolc/NodeJsTraining/issues"
   },
   "homepage": "https://github.com/Szoolc/NodeJsTraining#readme",
-  "dependencies": {
-    "whatwg-fetch": "1.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "6.16.0",
     "babel-core": "6.17.0",
