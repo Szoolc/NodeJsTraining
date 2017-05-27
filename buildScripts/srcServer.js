@@ -17,8 +17,20 @@ app.use(require('webpack-dev-middleware')(compiler,{
     publicPath: config.output.publicPath
 }));
 
+app.get('/users',function(req,res){
+    res.json([
+        {"id":1,"firstName":"Bob","lastName":"Smith","email":"bob@gmail.com"},
+        {"id":2,"firstName":"Alice","lastName":"Norton","email":"alice@gmail.com"},
+        {"id":3,"firstName":"Tom","lastName":"Lee","email":"tom@gmail.com"}
+    ]);
+});
+
+app.get('/about',function(req,res){
+    res.sendFile(path.join(__dirname,"../src/about.html"));
+});
+
 app.get('/',function(req,res){
-    res.sendFile(path.join(__dirname,'../src/index.html'))
+    res.sendFile(path.join(__dirname,'../src/index.html'));
 });
 app.listen(port,function(err){
     if(err){
